@@ -1,0 +1,25 @@
+{
+  "name": "google-domains-dynamic-dns",
+  "version": "1.0.0",
+  "description": "Updates google domains dns for the domain specified",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PredictabilityIsGood/google-domains-dynamic-dns.git"
+  },
+  "keywords": [
+    "google"
+  ],
+  "author": "Ryan Montgomery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PredictabilityIsGood/google-domains-dynamic-dns/issues"
+  },
+  "homepage": "https://github.com/PredictabilityIsGood/google-domains-dynamic-dns#readme",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}
