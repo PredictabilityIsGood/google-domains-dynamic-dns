@@ -7,14 +7,14 @@ const lookup = util.promisify(dns.lookup);  // turn lookup function into a promi
 let username = "USERNAME";  // username avilable within domains.google.com => Your domain => DNS => Synthetic Records and then by clicking expand arrow
 let password = "PASSWORD";  // password avilable within domains.google.com => Your domain => DNS => Synthetic Records and then by clicking expand arrow
 let host = "HOSTNAME";      // create registered host
-let ip_service = "https://domains.google.com/checkip";          //Service which provides requestors ip address
+let ip_service = "https://domains.google.com/checkip";          //Service which provides requestors IP address
 let google_update = `https://domains.google.com/nic/update`;    //Service which allows Dynamic DNS updates
-let offline = "no"  // "yes","no"
+let offline = "no"  //Option which allows you to turn off specific host DDNS : "yes","no"
 
 async function SyncIP(){ //async function definition to avoid "callback hell"
     let current_host_ip = (await axios.get(ip_service)).data;   // Get current host IP
     let existing_host_ip = (await lookup(host)).address;        // Get existing host IP
-    if(current_host_ip != existing_host_ip){
+    if(current_host_ip != existing_host_ip){ //Check current host IP matches existing host IP
         console.log("Perform IP Synchronization");
         try{
             //Synchronize current IP with host IP
@@ -22,7 +22,7 @@ async function SyncIP(){ //async function definition to avoid "callback hell"
                 username:username,
                 password:password
             },{
-                auth: { //place within Auth to avoid sending through HTTP URL Header
+                auth: { //credentials placed within Auth to avoid sending through HTTP URL header
                     username: username,
                     password: password
                 }
@@ -38,4 +38,3 @@ async function SyncIP(){ //async function definition to avoid "callback hell"
     }
 }
 SyncIP();
-
