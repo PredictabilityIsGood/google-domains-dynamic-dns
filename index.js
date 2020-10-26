@@ -13,7 +13,13 @@ let offline = "no"  //Option which allows you to turn off specific host DDNS : "
 
 async function SyncIP(){ //async function definition to avoid "callback hell"
     let current_host_ip = (await axios.get(ip_service)).data;   // Get current host IP
-    let existing_host_ip = (await lookup(host)).address;        // Get existing host IP
+    let existing_host_ip = "0.0.0.0"; //starting host ip when host address DNE
+    try{
+        existing_host_ip = (await lookup(host)).address;        // Get existing host IP
+    }
+    catch(exception){
+        console.log("No A record exists, perform IP synchronization to fill DDNS record"); // No existing host ip map exists - continue to update
+    }
     if(current_host_ip != existing_host_ip){ //Check current host IP matches existing host IP
         console.log("Perform IP Synchronization");
         try{
